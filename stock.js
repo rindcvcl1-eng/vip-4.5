@@ -76,6 +76,7 @@ function renderPlayerStocks() {
       <div>
         ${id} – ${ps.quantity} cổ
         (Giá mua ${(ps.buyPrice / 1e6).toFixed(0)}tr)
+        <button onclick="sellStock('${id}')">BÁN</button>
       </div>
     `;
   }
@@ -152,3 +153,49 @@ function aiBuyStocks() {
   renderStocks();
 }
 setInterval(aiBuyStocks, 5 * 60 * 1000);
+// ===== BÁN CỔ PHIẾU =====
+function sellStock(stockId) {
+  const stock = stocks.find(s => s.id === stockId);
+  const ps = playerStocks[stockId];
+  if (!stock || !ps) return;
+
+  const value = stock.price * ps.quantity;
+
+  playerMoney += value;
+  stock.supply += ps.quantity;
+
+  delete playerStocks[stockId];
+
+  updateMoneyUI();
+  renderStocks();
+  renderPlayerStocks();
+
+  alert(`✅ Đã bán cổ phiếu ${stockId}`);
+}
+// ===== KIỂM TRA PHÁ SẢN =====
+function checkBankruptcy() {
+  stocks.forEach(stock => {
+    if (stock.price === 0 && !stock.bankrupt) {
+      stock.bankrupt = true;
+
+      // người chơi đang giữ
+      if (playerStocks[stock.id]) {
+        playerMoney -= 200_000_000;
+        delete playerStocks[stock.id];
+      }
+
+      // AI đang giữ
+      if (aiStocks[stock.id]) {
+        aiMoney -= 200_000_000;
+        delete aiStocks[stock.id];
+      }
+
+      alert(`💣 Cổ phiếu ${stock.id} PHÁ SẢN!`);
+    }
+  });
+
+  updateMoneyUI();
+  renderStocks();
+  renderPlayerStocks();
+  checkBankruptcy();
+}
