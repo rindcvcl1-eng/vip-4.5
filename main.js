@@ -1,3 +1,11 @@
+// main.js
+let playerMoney = 1000000000;
+
+let tableBet = {
+  player: { tai: 0, xiu: 0 },
+  ai: { tai: 0, xiu: 0 }
+};
+
 let timeLeft = 180;
 let diceResult = [];
 let isRolled = false;
