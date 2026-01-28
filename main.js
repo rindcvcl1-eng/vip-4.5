@@ -37,12 +37,12 @@ function bet(side, amount) {
 function rollDice() {
   isRolled = true;
   isOpened = false;
-  currentBet = { tai: 0, xiu: 0 };
-
-  diceResult = [rand(), rand(), rand()];
   diceEl.style.opacity = 0;
-  cupEl.classList.add("shaking");
 
+  const desired = casinoAIResult(); // AI quyết định
+  diceResult = generateDice(desired);
+
+  cupEl.classList.add("shaking");
   setTimeout(() => {
     cupEl.classList.remove("shaking");
   }, 2000);
