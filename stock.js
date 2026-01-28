@@ -21,3 +21,5 @@ function renderStocks() {
     list.appendChild(div);
   });
 }
+// cổ phiếu người chơi đang nắm
+let playerStocks = {};
