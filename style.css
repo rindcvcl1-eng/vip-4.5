@@ -114,3 +114,34 @@ footer {
   opacity: 0;
   transition: opacity 0.3s;
 }
+.bet-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.bet-side {
+  width: 48%;
+  background: #0d0d0d;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.bet-side h3 {
+  margin-bottom: 10px;
+}
+
+.bet-side:first-child h3 { color: #ff5555; }
+.bet-side:last-child h3 { color: #55aaff; }
+
+.history {
+  margin-top: 15px;
+  background: #0b0b0b;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+#history span {
+  margin-right: 5px;
+}
