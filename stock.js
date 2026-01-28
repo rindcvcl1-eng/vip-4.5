@@ -23,3 +23,27 @@ function renderStocks() {
 }
 // cổ phiếu người chơi đang nắm
 let playerStocks = {};
+function buyStock(stockId, quantity) {
+  const stock = stocks.find(s => s.id === stockId);
+  if (!stock) return alert('Không tìm thấy cổ phiếu');
+
+  if (quantity < 30) return alert('Phải mua ít nhất 30 cổ');
+  if (stock.supply < quantity) return alert('Không đủ cổ để mua');
+  if (playerStocks[stockId]) return alert('Bạn đã mua cổ này rồi');
+
+  const totalCost = stock.price * quantity;
+  if (playerMoney < totalCost) return alert('Không đủ tiền');
+
+  // trừ tiền & cổ
+  playerMoney -= totalCost;
+  stock.supply -= quantity;
+
+  // lưu quyền sở hữu
+  playerStocks[stockId] = {
+    quantity,
+    buyPrice: stock.price
+  };
+
+  renderStocks();
+  updateMoneyUI();
+}
