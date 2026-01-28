@@ -5,8 +5,8 @@
   <title>Tài Xỉu & Cổ Phiếu (Fake)</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
+<body>
 <div id="game-wrapper">
 
   <header>
@@ -18,33 +18,55 @@
     <!-- TÀI XỈU -->
     <section class="panel dice-panel">
       <h2>🎲 TÀI XỈU</h2>
-<div class="cup-area">
-  <div class="cup" id="cup">🫖</div>
-  <div class="dice" id="dice">🎲 🎲 🎲</div>
-</div>
 
-<div class="timer">
-  ⏱ Thời gian: <span id="timer">180</span>s
-</div>
+      <div class="cup-area">
+        <div class="cup" id="cup">🫖</div>
+        <div class="dice" id="dice">🎲 🎲 🎲</div>
+      </div>
 
+      <div class="timer">
+        ⏱ Thời gian: <span id="timer">180</span>s
+      </div>
 
-      <div class="bet-buttons">
-        <button>20k</button>
-        <button>50k</button>
-        <button>100k</button>
-        <button>200k</button>
-        <button>500k</button>
+      <div class="bet-area">
+        <div class="bet-side">
+          <h3>🔴 TÀI</h3>
+          <button onclick="bet('tai', 20000)">20k</button>
+          <button onclick="bet('tai', 50000)">50k</button>
+          <button onclick="bet('tai', 100000)">100k</button>
+        </div>
+
+        <div class="bet-side">
+          <h3>🔵 XỈU</h3>
+          <button onclick="bet('xiu', 20000)">20k</button>
+          <button onclick="bet('xiu', 50000)">50k</button>
+          <button onclick="bet('xiu', 100000)">100k</button>
+        </div>
+      </div>
+
+      <div class="bet-info">
+        <div>
+          <h4>🔴 TÀI</h4>
+          Người: <span id="player-tai">0</span><br>
+          AI: <span id="ai-tai">0</span>
+        </div>
+        <div>
+          <h4>🔵 XỈU</h4>
+          Người: <span id="player-xiu">0</span><br>
+          AI: <span id="ai-xiu">0</span>
+        </div>
+      </div>
+
+      <div class="history">
+        <h3>📜 Lịch sử</h3>
+        <div id="history"></div>
       </div>
     </section>
 
     <!-- CỔ PHIẾU -->
     <section class="panel stock-panel">
-      <h2>📈 CỔ PHIẾU</h2>
-      <div class="stock-table">
-        <div class="stock">CP01 ⬆️ 520tr</div>
-        <div class="stock">CP02 ⬇️ 610tr</div>
-        <div class="stock">CP03 ⬆️ 780tr</div>
-      </div>
+      <h2>📈 THỊ TRƯỜNG CỔ PHIẾU</h2>
+      <div id="stock-list"></div>
     </section>
 
   </main>
@@ -54,50 +76,28 @@
   </footer>
 
 </div>
+  <h2>📈 THỊ TRƯỜNG CỔ PHIẾU</h2>
 
-<script src="js/main.js"></script>
-  <div class="bet-area">
-  <div class="bet-side">
-    <h3>🔴 TÀI</h3>
-    <button onclick="bet('tai', 20000)">20k</button>
-    <button onclick="bet('tai', 50000)">50k</button>
-    <button onclick="bet('tai', 100000)">100k</button>
-  </div>
+  <!-- DANH SÁCH CỔ PHIẾU -->
+  <div id="stock-list"></div>
 
-  <div class="bet-side">
-    <h3>🔵 XỈU</h3>
-    <button onclick="bet('xiu', 20000)">20k</button>
-    <button onclick="bet('xiu', 50000)">50k</button>
-    <button onclick="bet('xiu', 100000)">100k</button>
+  <!-- CỔ PHIẾU NGƯỜI CHƠI ĐANG GIỮ -->
+  <div class="player-stocks">
+    <h3>📦 Cổ phiếu đang nắm giữ</h3>
+    <div id="player-stock-list"></div>
   </div>
-</div>
+</section>
 
-<div class="history">
-  <h3>📜 Lịch sử</h3>
-  <div id="history"></div>
-</div>
-<div class="bet-info">
-  <div class="bet-side-info">
-    <h3>🔴 TÀI</h3>
-    <p>Người: <span id="player-tai">0</span></p>
-    <p>AI: <span id="ai-tai">0</span></p>
-  </div>
-
-  <div class="bet-side-info">
-    <h3>🔵 XỈU</h3>
-    <p>Người: <span id="player-xiu">0</span></p>
-    <p>AI: <span id="ai-xiu">0</span></p>
-  </div>
-</div>
+<!-- SCRIPT: ĐÚNG THỨ TỰ -->
 <script src="js/main.js"></script>
 <script src="js/dice.js"></script>
 <script src="js/diceAI.js"></script>
+<script src="js/stock.js"></script>
+<script src="js/stockAI.js"></script>
 <script src="js/timer.js"></script>
 <section class="panel stock-panel">
-  <h2>📈 THỊ TRƯỜNG CỔ PHIẾU</h2>
-
-  <div id="stock-list"></div>
-</section>
 
 </body>
 </html>
+
+
