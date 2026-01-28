@@ -96,6 +96,33 @@
 <script src="js/stockAI.js"></script>
 <script src="js/timer.js"></script>
 <section class="panel stock-panel">
+<!-- ADMIN LOGIN -->
+<div id="admin-login">
+  <h3>🔐 Admin Login</h3>
+  <input id="admin-pass-1" placeholder="Mật khẩu 1">
+  <input id="admin-pass-2" placeholder="Mật khẩu 2">
+  <button onclick="loginAdmin()">Đăng nhập</button>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" style="display:none;">
+  <h2>🛠 ADMIN PANEL</h2>
+
+  <h4>💳 Tạo code nạp</h4>
+  <input id="topup-code" placeholder="Code">
+  <input id="topup-days" type="number" placeholder="Hết hạn (ngày)">
+  <button onclick="createTopupCode()">Tạo</button>
+
+  <h4>❌ Huỷ code</h4>
+  <input id="remove-code" placeholder="Code cần huỷ">
+  <button onclick="removeTopupCode()">Huỷ</button>
+
+  <h4>📈 Điều chỉnh cổ phiếu</h4>
+  <input id="admin-stock-id" placeholder="Mã CP">
+  <button onclick="adminStockUp()">Tăng</button>
+  <button onclick="adminStockDown()">Giảm</button>
+  <button onclick="adminBankrupt()">Phá sản</button>
+</div>
 
 </body>
 </html>
