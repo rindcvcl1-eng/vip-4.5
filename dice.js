@@ -17,3 +17,6 @@ function resetTableBet() {
   tableBet.ai.xiu = 0;
   updateBetUI();
 }
+function endRound() {
+  resetTableBet();
+}
