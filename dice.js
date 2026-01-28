@@ -20,3 +20,10 @@ function resetTableBet() {
 function endRound() {
   resetTableBet();
 }
+// dice.js
+let history = []; // 'tai' hoặc 'xiu'
+
+function addHistory(result) {
+  history.unshift(result);
+  if (history.length > 10) history.pop();
+}
