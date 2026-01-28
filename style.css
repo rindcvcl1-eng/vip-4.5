@@ -97,3 +97,20 @@ footer {
   color: #00ff88;
   font-weight: bold;
 }
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.shaking {
+  animation: shake 0.4s infinite;
+}
+
+.dice {
+  font-size: 50px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
