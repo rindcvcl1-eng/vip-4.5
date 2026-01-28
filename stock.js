@@ -84,3 +84,37 @@ function renderPlayerStocks() {
 // ===== KHỞI ĐỘNG =====
 renderStocks();
 updateMoneyUI();
+// ===== BIẾN ĐỘNG GIÁ CỔ PHIẾU =====
+function updateStockPrices() {
+  stocks.forEach(stock => {
+    const isIncrease = Math.random() < 0.2; // 20% tăng
+
+    const changePercent = Math.random() * 0.15 + 0.05; // 5% -> 20%
+    const changeAmount = stock.price * changePercent;
+
+    if (isIncrease) {
+      stock.price += changeAmount;
+      stock.trend = 'up';
+    } else {
+      stock.price -= changeAmount;
+      stock.trend = 'down';
+
+      // nếu người chơi đang giữ cổ → trừ tiền trực tiếp
+      if (playerStocks[stock.id]) {
+        const loss =
+          changeAmount * playerStocks[stock.id].quantity;
+        playerMoney -= loss;
+      }
+    }
+
+    // không cho giá âm
+    if (stock.price < 0) stock.price = 0;
+  });
+
+  updateMoneyUI();
+  renderStocks();
+  renderPlayerStocks();
+}
+
+// ===== CHẠY MỖI 5 PHÚT =====
+setInterval(updateStockPrices, 5 * 60 * 1000);
