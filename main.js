@@ -136,3 +136,10 @@ function updateMoney() {
   document.querySelector(".money").innerText =
     playerMoney.toLocaleString();
 }
+// main.js
+function updateBetUI() {
+  document.getElementById('player-tai').innerText = tableBet.player.tai;
+  document.getElementById('player-xiu').innerText = tableBet.player.xiu;
+  document.getElementById('ai-tai').innerText = tableBet.ai.tai;
+  document.getElementById('ai-xiu').innerText = tableBet.ai.xiu;
+}
