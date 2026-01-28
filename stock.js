@@ -118,3 +118,37 @@ function updateStockPrices() {
 
 // ===== CHẠY MỖI 5 PHÚT =====
 setInterval(updateStockPrices, 5 * 60 * 1000);
+// ===== AI NHÀ ĐẦU TƯ =====
+let aiMoney = 2_000_000_000;
+let aiStocks = {};
+
+// AI quyết định mua cổ phiếu
+function aiBuyStocks() {
+  stocks.forEach(stock => {
+    // bỏ qua nếu hết cổ hoặc AI đã mua
+    if (stock.supply < 30 || aiStocks[stock.id]) return;
+
+    // AI ưu tiên cổ đang tăng
+    let buyChance = stock.trend === 'up' ? 0.6 : 0.15;
+
+    if (Math.random() < buyChance) {
+      const quantity = 30;
+      const cost = stock.price * quantity;
+
+      if (aiMoney >= cost) {
+        aiMoney -= cost;
+        stock.supply -= quantity;
+
+        aiStocks[stock.id] = {
+          quantity,
+          buyPrice: stock.price
+        };
+
+        console.log(`🤖 AI mua ${quantity} cổ ${stock.id}`);
+      }
+    }
+  });
+
+  renderStocks();
+}
+setInterval(aiBuyStocks, 5 * 60 * 1000);
