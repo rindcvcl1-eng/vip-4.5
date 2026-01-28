@@ -27,3 +27,14 @@ function addHistory(result) {
   history.unshift(result);
   if (history.length > 10) history.pop();
 }
+// dice.js
+function openCup() {
+  const result = bankerDecideResult(); // 'tai' hoặc 'xiu'
+
+  // giả lập xúc xắc theo kết quả
+  showDice(result);
+
+  addHistory(result);
+  settleBets(result);
+  resetTableBet();
+}
