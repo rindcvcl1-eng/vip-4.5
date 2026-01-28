@@ -71,19 +71,65 @@ function resolveGame() {
 
   if (currentBet[result] > 0) {
     playerMoney += currentBet[result] * 2;
+    winStreak++;
+    loseStreak = 0;
+  } else {
+    loseStreak++;
+    winStreak = 0;
   }
 
   history.unshift(result);
   if (history.length > 10) history.pop();
+
   renderHistory();
   updateMoney();
 }
+
 
 // HIỂN THỊ
 function renderHistory() {
   historyEl.innerHTML = history
     .map(r => r === "tai" ? "🔴" : "🔵")
     .join("");
+}
+let winStreak = 0;
+let loseStreak = 0;
+
+// AI NHÀ CÁI QUYẾT ĐỊNH
+function casinoAIResult() {
+  const r = Math.random();
+
+  // đang thắng nhiều → đè
+  if (winStreak >= 2) {
+    return r < 0.75 ? "xiu" : "tai";
+  }
+
+  // đang thua nhiều → thả
+  if (loseStreak >= 2) {
+    return r < 0.6 ? "tai" : "xiu";
+  }
+
+  // trạng thái bình thường
+  if (r < 0.39) return "tai";   // cho thắng
+  if (r < 0.90) return "xiu";   // cho thua
+  return Math.random() < 0.5 ? "tai" : "xiu";
+}
+
+// SINH XÚC XẮC PHÙ HỢP
+function generateDice(side) {
+  let d1, d2, d3, sum;
+
+  do {
+    d1 = rand();
+    d2 = rand();
+    d3 = rand();
+    sum = d1 + d2 + d3;
+  } while (
+    (side === "tai" && sum < 11) ||
+    (side === "xiu" && sum >= 11)
+  );
+
+  return [d1, d2, d3];
 }
 
 function updateMoney() {
