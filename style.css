@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  color: #eee;
+}
+
+#game-wrapper {
+  max-width: 1400px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  color: #ffd700;
+  letter-spacing: 2px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: #111;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(255,215,0,0.1);
+}
+
+.dice-panel .cup-area {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 80px;
+  justify-content: center;
+}
+
+.cup {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.cup:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.timer {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 18px;
+  color: #0f0;
+}
+
+.bet-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.bet-buttons button {
+  flex: 1;
+  background: #222;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.bet-buttons button:hover {
+  background: #333;
+}
+
+.stock {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.money {
+  color: #00ff88;
+  font-weight: bold;
+}
