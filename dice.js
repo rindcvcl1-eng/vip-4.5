@@ -9,3 +9,11 @@ let tableBet = {
     xiu: 0
   }
 };
+// dice.js
+function resetTableBet() {
+  tableBet.player.tai = 0;
+  tableBet.player.xiu = 0;
+  tableBet.ai.tai = 0;
+  tableBet.ai.xiu = 0;
+  updateBetUI();
+}
